@@ -1,0 +1,16 @@
+PODS:
+  - DTRouter (0.1.0)
+
+DEPENDENCIES:
+  - DTRouter (from `../`)
+
+EXTERNAL SOURCES:
+  DTRouter:
+    :path: ../
+
+SPEC CHECKSUMS:
+  DTRouter: 1f72d6361cdc8272c363447826eccbce2596ca31
+
+PODFILE CHECKSUM: 725648ebca48ed22919709106da32ffe1fa013ae
+
+COCOAPODS: 1.1.1

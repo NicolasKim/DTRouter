@@ -7,12 +7,50 @@
 //
 
 #import "DTAppDelegate.h"
+#import <DTRouter/DTRouter.h>
+#import "DTViewController.h"
+
+typedef void(^DTViewControllerTestBlock)();
 
 @implementation DTAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+
+//    DTRouterRequest * request = [[DTRouterRequest alloc]init];
+//    request.routerType = DTRoterRequestType_GET;
+//    request.URLString = @"dtrouter://invokeclassmethod?aa=haha&bb=heihei";
+//    DTRouterResponse * resp = [[DTRouter sharedInstance]syncRequest:request];
+//    NSLog(@"%@",resp.resultValue);
+    
+    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        
+//        DTViewControllerTestBlock block = ^(){
+//            
+//            NSLog(@"52sdlkjfklajsdlkfjkasjdfkljlk");
+//        };
+//        
+//        
+//        DTRouterRequest * request1 = [[DTRouterRequest alloc]init];
+//        request1.routerType = DTRoterRequestType_POST;
+//        request1.URLString = @"dtrouter://invokeinstancemethod";
+//        request1.params    = @[@{@"key1":@"value1",@"key2":@"value2"},[block copy]];
+//        DTRouterResponse * resp1 = [[DTRouter sharedInstance]syncRequest:request1];
+//        NSLog(@"%@----error:%@",resp1.resultValue,resp1.error);
+//    });
+    
+    
+    
+    DTRouterRequest * request1 = [[DTRouterRequest alloc]init];
+    request1.routerType = DTRoterRequestType_POST;
+    request1.URLString = @"dtrouter://initViewController";
+    request1.params    = @[@{@"key1":@"value1",@"key2":@"value2"}];
+    DTRouterResponse * resp1 = [[DTRouter sharedInstance]syncRequest:request1];
+    NSLog(@"%@----error:%@",resp1.resultValue,resp1.error);
+    
+    
+ 
     return YES;
 }
 

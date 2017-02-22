@@ -6,8 +6,12 @@
 //  Copyright (c) 2017 jinqiucheng1006@live.cn. All rights reserved.
 //
 
+#import <DTRouter/DTRouter.h>
+
+
 @import UIKit;
 
-@interface DTViewController : UIViewController
-
+@interface DTViewController : UIViewController<DTRouterObjectProtocol>
+-(void)hahah:(NSString *)str haha:(NSString *)str1;
++(NSDictionary *)test:(NSString *)str1 andTest:(NSString *)str2;
 @end

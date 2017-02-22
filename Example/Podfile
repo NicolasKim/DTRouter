@@ -6,6 +6,5 @@ target 'DTRouter_Example' do
   target 'DTRouter_Tests' do
     inherit! :search_paths
 
-    pod 'FBSnapshotTestCase'
   end
 end
