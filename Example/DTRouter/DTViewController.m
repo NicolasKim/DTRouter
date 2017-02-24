@@ -7,83 +7,69 @@
 //
 
 #import "DTViewController.h"
-
+#import <DTRouter/UIViewController+DTRouter.h>
+#import <DTRouter/UINavigationController+DTRouter.h>
 typedef void(^DTViewControllerTestBlock)();
 
 
-@interface DTViewController ()
-@property (nonatomic,strong)NSDictionary * dict;
+@interface DTViewController ()<UITableViewDelegate,UITableViewDataSource>
+{
+    NSArray * _dictArr;
+}
 @end
 
 @implementation DTViewController
 
-+(void)load{
-//    DTRouterModel * model = [[DTRouterModel alloc]initInvokeModelWithURL:@"dtrouter://invokeclassmethod" withClass:[DTViewController class] method:@selector(test:andTest:)];
-//    [[DTRouter sharedInstance]registModule:model error:nil];
-    
-    DTRouterModel * model = [[DTRouterModel alloc]initCreateModelWithURL:@"dtrouter://initViewController" withClass:[DTViewController class] method:@selector(initWithDict:)];
-    [[DTRouter sharedInstance]registModule:model error:nil];
-
-}
-
-
-
-- (instancetype)initWithDict:(NSDictionary *)dict
-{
-    self = [super init];
-    if (self) {
-        self.dict = dict;
-    }
-    return self;
-}
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    DTRouterModel * model1 = [[DTRouterModel alloc]initInvokeModelWithURL:@"dtrouter://invokeinstancemethod" withObject:self method:@selector(dt_setupData:)];
-//    [[DTRouter sharedInstance]registModule:model1 error:nil];
-    
-    
-    
-    
-    DTRouterModel * model2 = [[DTRouterModel alloc]initInvokeModelWithURL:@"dtrouter://invokeinstancemethod" withObject:self method:@selector(dt_setupData:block:)];
-    [[DTRouter sharedInstance]registModule:model2 error:nil];
-    
-    
+    _dictArr = @[@"present",@"push"];
+    [self.tableview registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    self.tableview.delegate = self;
+    self.tableview.dataSource = self;
 }
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    }
+    cell.textLabel.text = _dictArr[indexPath.row];
+    
+    return cell;
+}
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return _dictArr.count;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.row) {
+        case 0:
+        {
+            [self dt_presentViewControllerURL:@"dtrouter://initTestViewController" animated:YES completion:^{
+                NSLog(@"complete");
+            }];
+        }
+            break;
+        case 1:
+        {
+            [self.navigationController dt_pushViewControllerURL:@"dtrouter://initPushTestViewController" animated:YES];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
-+(NSDictionary *)test:(NSString *)str1 andTest:(NSString *)str2 {
-    return @{@"key1":str1,@"key2":str2};
-}
-
--(void)dt_setupData:(NSDictionary *)data{
-    NSLog(@"%@",data);
-}
-
-
--(void)dt_setupData:(NSDictionary *)data block:(DTViewControllerTestBlock)block{
-    block();
-    NSLog(@"%@",data);
-}
-
-
-
-
-
-
-
-
-
--(void)hahah:(NSString *)str haha:(NSString *)str1{
-    NSLog(@"%@  %@",str,str1 );
 }
 
 

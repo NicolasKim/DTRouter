@@ -38,6 +38,8 @@ static DTRouterURLManager * _instance;
     [self.URLMap enumerateObjectsUsingBlock:^(DTRouterModel * _Nonnull obj, BOOL * _Nonnull stop) {
         NSURLComponents * mapComp = [NSURLComponents componentsWithString:obj.URLString];
         NSURLComponents * reqComp = [NSURLComponents componentsWithString:request.URLString];
+        
+        
         if ([mapComp.scheme isEqualToString:reqComp.scheme]&&
             [mapComp.host isEqualToString:reqComp.host] &&
             [mapComp.path isEqualToString:reqComp.path]) {

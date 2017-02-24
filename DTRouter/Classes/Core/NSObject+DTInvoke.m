@@ -13,9 +13,7 @@
     NSMethodSignature * signature =[self methodSignatureForSelector:selector];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
     if (objects.count == signature.numberOfArguments-2) {
-        
         for (int i = 2; i < signature.numberOfArguments; i++) {
-            
             const char *type = [signature getArgumentTypeAtIndex:i];
             id argument = objects[i-2];
             if (strcmp(type, "@") == 0) {

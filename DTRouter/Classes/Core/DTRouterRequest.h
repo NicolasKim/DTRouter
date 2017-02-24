@@ -17,17 +17,17 @@ typedef NS_ENUM(NSUInteger, DTRoterRequestType) {
 @interface DTRouterRequest : NSObject
 /*!
  @property
- @abstract 请求类型
+ @abstract request type
  */
 @property (nonatomic,assign)DTRoterRequestType  routerType;
 /*!
  @property
- @abstract protocol://host/method     , protocol://host/method?param1=value1&param2=value2
+ @abstract scheme://host/path   or scheme://host/path?param1=value1&param2=value2
  */
 @property (nonatomic,strong)NSString     * URLString;
 /*!
  @property
- @abstract 请求参数  参数的顺序
+ @abstract params for post routerType 'DTRoterRequestType_POST'
  */
 @property (nonatomic,strong)NSArray      * params;
 

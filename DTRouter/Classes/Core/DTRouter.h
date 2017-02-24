@@ -13,13 +13,6 @@
 
 typedef void(^DTResponseBlock)(DTRouterResponse * response);
 
-@protocol DTRouterObjectProtocol <NSObject>
-
--(void)dt_setupData:(NSDictionary *)data;
-
-@end
-
-
 @interface DTRouter : NSObject
 
 +(instancetype)sharedInstance;
@@ -29,11 +22,22 @@ typedef void(^DTResponseBlock)(DTRouterResponse * response);
  */
 -(void)registModule:(DTRouterModel *)module error:(NSError *__autoreleasing *)error;
 
+/*!
+ @property
+ @abstract unregiste module
+ */
 -(void)unregistModule:(DTRouterModel *)module error:(NSError *__autoreleasing *)error;
 
-
+/*!
+ @property
+ @abstract invoke syncronize
+ */
 -(DTRouterResponse *)syncRequest:(DTRouterRequest *)request;
 
+/*!
+ @property
+ @abstract invoke asyncronize
+ */
 -(void)asyncRequest:(DTRouterRequest *)request withComplete:(DTResponseBlock)complete;
 
 @end

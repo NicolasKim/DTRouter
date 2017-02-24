@@ -42,12 +42,12 @@ typedef void(^DTViewControllerTestBlock)();
     
     
     
-    DTRouterRequest * request1 = [[DTRouterRequest alloc]init];
-    request1.routerType = DTRoterRequestType_POST;
-    request1.URLString = @"dtrouter://initViewController";
-    request1.params    = @[@{@"key1":@"value1",@"key2":@"value2"}];
-    DTRouterResponse * resp1 = [[DTRouter sharedInstance]syncRequest:request1];
-    NSLog(@"%@----error:%@",resp1.resultValue,resp1.error);
+//    DTRouterRequest * request1 = [[DTRouterRequest alloc]init];
+//    request1.routerType = DTRoterRequestType_POST;
+//    request1.URLString = @"dtrouter://initViewController";
+//    request1.params    = @[@{@"key1":@"value1",@"key2":@"value2"}];
+//    DTRouterResponse * resp1 = [[DTRouter sharedInstance]syncRequest:request1];
+//    NSLog(@"%@----error:%@",resp1.resultValue,resp1.error);
     
     
  

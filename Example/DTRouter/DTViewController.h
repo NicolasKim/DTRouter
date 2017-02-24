@@ -11,7 +11,6 @@
 
 @import UIKit;
 
-@interface DTViewController : UIViewController<DTRouterObjectProtocol>
--(void)hahah:(NSString *)str haha:(NSString *)str1;
-+(NSDictionary *)test:(NSString *)str1 andTest:(NSString *)str2;
+@interface DTViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
 @end
