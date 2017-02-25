@@ -10,7 +10,7 @@
 
 @interface UIViewController (DTRouter)
 
--(void)dt_presentViewControllerURL:(NSString *)URLString animated:(BOOL)animated completion:(void (^ __nullable)(void))completion;
--(void)dt_presentViewControllerURL:(NSString *)URLString initParams:(NSArray *)params animated:(BOOL)animated completion:(void (^ __nullable)(void))completion;
+-(void)dt_presentViewControllerURL:(NSString * __nonnull)URLString animated:(BOOL)animated completion:(void (^ __nullable)(void))completion;
+-(void)dt_presentViewControllerURL:(NSString * __nonnull)URLString initParams:(NSArray * __nullable)params animated:(BOOL)animated completion:(void (^ __nullable)(void))completion;
 
 @end

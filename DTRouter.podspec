@@ -26,6 +26,7 @@ Pod::Spec.new do |s|
 
     s.subspec 'UI' do |cs|
         cs.source_files = 'DTRouter/Classes/UIKitExtentsion/*'
+        cs.dependency   'DTRouter/Core'
     end
 
 end

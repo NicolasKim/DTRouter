@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UINavigationController (DTRouter)
--(void)dt_pushViewControllerURL:(NSString *)URLString animated:(BOOL)animated;
--(void)dt_pushViewControllerURL:(NSString *)URLString initParams:(NSArray *)params animated:(BOOL)animated;
+-(void)dt_pushViewControllerURL:(NSString * __nonnull)URLString animated:(BOOL)animated;
+-(void)dt_pushViewControllerURL:(NSString * __nonnull)URLString initParams:(NSArray *)params animated:(BOOL)animated;
 @end
