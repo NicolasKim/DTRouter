@@ -24,11 +24,11 @@ static DTRouterURLManager * _instance;
     return _instance;
 }
 
--(void)registModule:(DTRouterModel *)module error:(NSError *__autoreleasing *)error{
+-(void)registModel:(DTRouterModel *)module error:(NSError *__autoreleasing *)error{
     [self.URLMap addObject:module];
 }
 
--(void)unregistModule:(DTRouterModel *)module error:(NSError *__autoreleasing *)error{
+-(void)unregistModel:(DTRouterModel *)module error:(NSError *__autoreleasing *)error{
     [self.URLMap removeObject:module];
 }
 

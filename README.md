@@ -37,7 +37,7 @@ DTRouterRequest->param is a list for the selector param。
 ```objective-c
 //regist
 DTRouterModel * model = [[DTRouterModel alloc]initCreateModelWithURL:@"dtrouter://initViewController" withClass:[DTViewController class] method:@selector(initWithDict:)];
-[[DTRouter sharedInstance]registModule:model error:nil];
+[[DTRouter sharedInstance]registModel:model error:nil];
 //invoke
 DTRouterRequest * request = [[DTRouterRequest alloc]init];
 request.routerType = DTRoterRequestType_POST;
@@ -51,7 +51,7 @@ DTRouterResponse * resp = [[DTRouter sharedInstance]syncRequest:request];
 ```objective-c
 //regist
 DTRouterModel * model = [[DTRouterModel alloc]initInvokeModelWithURL:@"dtrouter://invokeclassmethod" withClass:[DTViewController class] method:@selector(test:andTest:)];
-[[DTRouter sharedInstance]registModule:model error:nil];
+[[DTRouter sharedInstance]registModel:model error:nil];
 //invoke
 DTRouterRequest * request = [[DTRouterRequest alloc]init];
 request.routerType = DTRoterRequestType_GET;
@@ -65,7 +65,7 @@ NSLog(@"%@",resp.resultValue);
 ```objective-c
 //regist
 DTRouterModel * model = [[DTRouterModel alloc]initInvokeModelWithURL:@"dtrouter://invokeinstancemethod" withObject:self method:@selector(dt_setupData:)];
-[[DTRouter sharedInstance]registModule:model error:nil];
+[[DTRouter sharedInstance]registModel:model error:nil];
 //invoke
 DTRouterRequest * request = [[DTRouterRequest alloc]init];
 request.routerType = DTRoterRequestType_POST;
@@ -81,7 +81,7 @@ DTRouterResponse * resp = [[DTRouter sharedInstance]syncRequest:request];
 ```objective-c
 //regist
 DTRouterModel * model = [[DTRouterModel alloc]initInvokeModelWithURL:@"dtrouter://invokeinstancemethod" withObject:self method:@selector(dt_setupData:block:)];
-[[DTRouter sharedInstance]registModule:model error:nil];
+[[DTRouter sharedInstance]registModel:model error:nil];
 //invoke
 DTViewControllerTestBlock block = ^(){
 NSLog(@"52sdlkjfklajsdlkfjkasjdfkljlk");

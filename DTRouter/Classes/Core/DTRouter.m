@@ -39,12 +39,12 @@ static DTRouter * _instance;
 }
 
 
--(void)registModule:(DTRouterModel *)module error:(NSError *__autoreleasing *)error{
-    [[DTRouterURLManager sharedInstance]registModule:module error:error];
+-(void)registModel:(DTRouterModel *)model error:(NSError *__autoreleasing *)error{
+    [[DTRouterURLManager sharedInstance]registModel:model error:error];
 }
 
--(void)unregistModule:(DTRouterModel *)module error:(NSError *__autoreleasing *)error{
-    [[DTRouterURLManager sharedInstance]unregistModule:module error:error];
+-(void)unregistModel:(DTRouterModel *)model error:(NSError *__autoreleasing *)error{
+    [[DTRouterURLManager sharedInstance]unregistModel:model error:error];
 }
 
 

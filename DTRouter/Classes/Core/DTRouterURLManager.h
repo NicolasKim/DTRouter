@@ -15,9 +15,9 @@
 
 +(instancetype)sharedInstance;
 
--(void)registModule:(DTRouterModel *)module error:(NSError *__autoreleasing *)error;
+-(void)registModel:(DTRouterModel *)module error:(NSError *__autoreleasing *)error;
 
--(void)unregistModule:(DTRouterModel *)module error:(NSError *__autoreleasing *)error;
+-(void)unregistModel:(DTRouterModel *)module error:(NSError *__autoreleasing *)error;
 
 -(DTRouterModel *)modelWithRequest:(DTRouterRequest *)request error:(NSError *__autoreleasing *)error;
 

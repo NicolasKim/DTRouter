@@ -25,6 +25,7 @@
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		9986A3901E6002CA0006B58E /* DTPresentTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9986A38F1E6002CA0006B58E /* DTPresentTestViewController.m */; };
 		9986A3971E600B5A0006B58E /* DTPushTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9986A3961E600B5A0006B58E /* DTPushTestViewController.m */; };
+		9986A3A91E6462380006B58E /* DTTestModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 9986A3A81E6462380006B58E /* DTTestModule.m */; };
 		FA856FF32F8AD379D966A498 /* Pods_DTRouter_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9615EF02CD1D0B302BDC91F7 /* Pods_DTRouter_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,8 @@
 		9986A38F1E6002CA0006B58E /* DTPresentTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTPresentTestViewController.m; sourceTree = "<group>"; };
 		9986A3951E600B5A0006B58E /* DTPushTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTPushTestViewController.h; sourceTree = "<group>"; };
 		9986A3961E600B5A0006B58E /* DTPushTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTPushTestViewController.m; sourceTree = "<group>"; };
+		9986A3A71E6462380006B58E /* DTTestModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTTestModule.h; sourceTree = "<group>"; };
+		9986A3A81E6462380006B58E /* DTTestModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTestModule.m; sourceTree = "<group>"; };
 		D920D6C3AD1417954A7FCDD1 /* DTRouter.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = DTRouter.podspec; path = ../DTRouter.podspec; sourceTree = "<group>"; };
 		DCE77D93BD4866DA0FFFBE41 /* Pods_DTRouter_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DTRouter_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E91FA95392CF407324B05D84 /* Pods-DTRouter_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DTRouter_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DTRouter_Tests/Pods-DTRouter_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 		6003F593195388D20070C39A /* Example for DTRouter */ = {
 			isa = PBXGroup;
 			children = (
+				9986A3A71E6462380006B58E /* DTTestModule.h */,
+				9986A3A81E6462380006B58E /* DTTestModule.m */,
 				6003F59C195388D20070C39A /* DTAppDelegate.h */,
 				6003F59D195388D20070C39A /* DTAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -410,6 +415,7 @@
 				9986A3971E600B5A0006B58E /* DTPushTestViewController.m in Sources */,
 				9986A3901E6002CA0006B58E /* DTPresentTestViewController.m in Sources */,
 				6003F59E195388D20070C39A /* DTAppDelegate.m in Sources */,
+				9986A3A91E6462380006B58E /* DTTestModule.m in Sources */,
 				6003F5A7195388D20070C39A /* DTViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);

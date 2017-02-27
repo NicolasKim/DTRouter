@@ -20,13 +20,13 @@ typedef void(^DTResponseBlock)(DTRouterResponse * response);
  @property
  @abstract registe module
  */
--(void)registModule:(DTRouterModel *)module error:(NSError *__autoreleasing *)error;
+-(void)registModel:(DTRouterModel *)model error:(NSError *__autoreleasing *)error;
 
 /*!
  @property
  @abstract unregiste module
  */
--(void)unregistModule:(DTRouterModel *)module error:(NSError *__autoreleasing *)error;
+-(void)unregistModel:(DTRouterModel *)model error:(NSError *__autoreleasing *)error;
 
 /*!
  @property

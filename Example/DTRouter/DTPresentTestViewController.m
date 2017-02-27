@@ -20,7 +20,7 @@ typedef void(^block)();
 +(void)load{
     NSError * error = nil;
     DTRouterModel * initModel = [[DTRouterModel alloc]initCreateModelWithURL:@"dtrouter://initTestViewController" withClass:self method:@selector(initWithInteger:selector:string:block:class:)];
-    [[DTRouter sharedInstance]registModule:initModel error:&error];
+    [[DTRouter sharedInstance]registModel:initModel error:&error];
     if (error) {
         NSLog(@"%@",error);
     }

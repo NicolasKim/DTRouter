@@ -16,7 +16,7 @@
 +(void)load{
     NSError * error = nil;
     DTRouterModel * initModel = [[DTRouterModel alloc]initCreateModelWithURL:@"dtrouter://initPushTestViewController" withClass:self method:@selector(init)];
-    [[DTRouter sharedInstance]registModule:initModel error:&error];
+    [[DTRouter sharedInstance]registModel:initModel error:&error];
     if (error) {
         NSLog(@"%@",error);
     }
