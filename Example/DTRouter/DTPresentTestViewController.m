@@ -8,6 +8,9 @@
 
 #import "DTPresentTestViewController.h"
 #import <DTRouter/DTRouter.h>
+
+typedef void(^block)();
+
 @interface DTPresentTestViewController ()
 
 @end
@@ -16,12 +19,29 @@
 
 +(void)load{
     NSError * error = nil;
-    DTRouterModel * initModel = [[DTRouterModel alloc]initCreateModelWithURL:@"dtrouter://initTestViewController" withClass:self method:@selector(init)];
+    DTRouterModel * initModel = [[DTRouterModel alloc]initCreateModelWithURL:@"dtrouter://initTestViewController" withClass:self method:@selector(initWithInteger:selector:string:block:class:)];
     [[DTRouter sharedInstance]registModule:initModel error:&error];
     if (error) {
         NSLog(@"%@",error);
     }
 }
+
+
+
+- (instancetype)initWithInteger:(NSInteger)i
+                       selector:(SEL)selector
+                         string:(NSString *)str
+                          block:(block)b
+                          class:(Class)c
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];

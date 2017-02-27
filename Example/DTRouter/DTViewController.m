@@ -48,8 +48,9 @@ typedef void(^DTViewControllerTestBlock)();
     switch (indexPath.row) {
         case 0:
         {
-            [self dt_presentViewControllerURL:@"dtrouter://initTestViewController" animated:YES completion:^{
-                NSLog(@"complete");
+            SEL s = @selector(tableView:canEditRowAtIndexPath:);
+            [self dt_presentViewControllerURL:@"dtrouter://initTestViewController" initParams:@[@1,NSStringFromSelector(s),@"hahah",^(){NSLog(@"hahaha");},[self class]] animated:YES completion:^{
+                
             }];
         }
             break;
