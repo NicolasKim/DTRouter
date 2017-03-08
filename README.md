@@ -22,79 +22,22 @@ pod "DTRouter"
 
 
 
-## Description
-
-DTRouterRequest->param is a list for the selector param。
-
-![image](https://github.com/NicolasKim/DTRouter/blob/master/DESCPIC.png)
-
-
-
 ## Usage
 
-1. create
-
 ```objective-c
-//regist
-DTRouterModel * model = [[DTRouterModel alloc]initCreateModelWithURL:@"dtrouter://initViewController" withClass:[DTViewController class] method:@selector(initWithDict:)];
-[[DTRouter sharedInstance]registModel:model error:nil];
-//invoke
-DTRouterRequest * request = [[DTRouterRequest alloc]init];
-request.routerType = DTRoterRequestType_POST;
-request.URLString = @"dtrouter://initViewController";
-request.params    = @[@{@"key1":@"value1",@"key2":@"value2"}];
-DTRouterResponse * resp = [[DTRouter sharedInstance]syncRequest:request];
+//regist 
+DTRouterRequest * req = [[DTRouterRequest alloc]initRegistWithURLPattern:@"example://firstviewcontroller" handler:^id(NSDictionary *paths, NSDictionary *arguments) {
+        DTViewController * viewcontroller = [[DTViewController alloc]init];
+        viewcontroller.viewTitle = arguments[@"title"];
+        return viewcontroller;
+    } error:nil];
+[[DTRouterService sharedInstance]request:req];
+
+//route
+DTRouterRequest * req = [[DTRouterRequest alloc]initRequestWithURLString:@"example://firstviewcontroller?title=hahaha" error:nil];
+    DTRouterResponse * resp = [[DTRouterService sharedInstance]request:req];
+    [self setViewControllers:@[resp.resultValue]];
 ```
-
-2. invoke class method
-
-```objective-c
-//regist
-DTRouterModel * model = [[DTRouterModel alloc]initInvokeModelWithURL:@"dtrouter://invokeclassmethod" withClass:[DTViewController class] method:@selector(test:andTest:)];
-[[DTRouter sharedInstance]registModel:model error:nil];
-//invoke
-DTRouterRequest * request = [[DTRouterRequest alloc]init];
-request.routerType = DTRoterRequestType_GET;
-request.URLString = @"dtrouter://invokeclassmethod?aa=haha&bb=heihei";
-DTRouterResponse * resp = [[DTRouter sharedInstance]syncRequest:request];
-NSLog(@"%@",resp.resultValue);
-```
-
-3. invoke instance method
-
-```objective-c
-//regist
-DTRouterModel * model = [[DTRouterModel alloc]initInvokeModelWithURL:@"dtrouter://invokeinstancemethod" withObject:self method:@selector(dt_setupData:)];
-[[DTRouter sharedInstance]registModel:model error:nil];
-//invoke
-DTRouterRequest * request = [[DTRouterRequest alloc]init];
-request.routerType = DTRoterRequestType_POST;
-request.URLString = @"dtrouter://invokeinstancemethod";
-request.params    = @[@{@"key1":@"value1",@"key2":@"value2"}];
-DTRouterResponse * resp = [[DTRouter sharedInstance]syncRequest:request];
-```
-
-​
-
-4. set block as parameter
-
-```objective-c
-//regist
-DTRouterModel * model = [[DTRouterModel alloc]initInvokeModelWithURL:@"dtrouter://invokeinstancemethod" withObject:self method:@selector(dt_setupData:block:)];
-[[DTRouter sharedInstance]registModel:model error:nil];
-//invoke
-DTViewControllerTestBlock block = ^(){
-NSLog(@"52sdlkjfklajsdlkfjkasjdfkljlk");
-};
-DTRouterRequest * request = [[DTRouterRequest alloc]init];
-request.routerType = DTRoterRequestType_POST;
-request.URLString = @"dtrouter://invokeinstancemethod";
-request.params    = @[@{@"key1":@"value1",@"key2":@"value2"},block];
-DTRouterResponse * resp = [[DTRouter sharedInstance]syncRequest:request];
-
-```
-
-​
 
 
 
