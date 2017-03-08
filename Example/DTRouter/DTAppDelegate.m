@@ -8,6 +8,7 @@
 
 #import "DTAppDelegate.h"
 #import <DTRouter/DTRouter.h>
+
 #import "DTViewController.h"
 
 typedef void(^DTViewControllerTestBlock)();
@@ -16,41 +17,59 @@ typedef void(^DTViewControllerTestBlock)();
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
-//    DTRouterRequest * request = [[DTRouterRequest alloc]init];
-//    request.routerType = DTRoterRequestType_GET;
-//    request.URLString = @"dtrouter://invokeclassmethod?aa=haha&bb=heihei";
-//    DTRouterResponse * resp = [[DTRouter sharedInstance]syncRequest:request];
-//    NSLog(@"%@",resp.resultValue);
+//    DTURLPattern * p = [[DTURLPattern alloc]initWithURLPattern:@"ahhh://:host/:path1/:path2"];
+//    
+//    
+//    BOOL result = [p isMatchWithURL:[NSURL URLWithString:@"ahhh://skjdfkajs/sdfj/asdf"]];
+//    
+//    if (result) {
+//        NSLog(@"match !!!");
+//    }
+//    else{
+//        NSLog(@"did not match !!!");
+//    }
     
     
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    
+    DTRouterRequest * req = [[DTRouterRequest alloc]initRegistWithURLPattern:@"ahhh://:host/:path1/:path2" handler:^NSDictionary *(NSDictionary * paths , NSDictionary * arguments) {
+        
+        NSLog(@"req callback");
+        return nil;
+    } error:nil];
+        
+    DTRouterResponse * resp = [[DTRouterService sharedInstance]request:req];
+    NSLog(@"%@",resp);
+    
+    
+    DTRouterRequest * req1 = [[DTRouterRequest alloc]initRegistWithURLPattern:@"ahhh://:host/:path1/:path2" handler:^NSDictionary *(NSDictionary * paths , NSDictionary * arguments) {
+        
+        NSLog(@"req1 callback %@   arguments : %@",paths,arguments);
+        return @{@"key1":@"value1",@"key2":@"value2"};
+    } error:nil];
+    
+    DTRouterResponse * resp1 = [[DTRouterService sharedInstance]request:req1];
+    NSLog(@"%@",resp1);
+    
+    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        DTRouterRequest * route = [[DTRouterRequest alloc]initRequestWithURLString:@"ahhh://hostValue/path1value/path2value" error:nil];
 //        
-//        DTViewControllerTestBlock block = ^(){
-//            
-//            NSLog(@"52sdlkjfklajsdlkfjkasjdfkljlk");
-//        };
+//        DTRouterResponse * resp = [[DTRouterService sharedInstance]request:route];
 //        
-//        
-//        DTRouterRequest * request1 = [[DTRouterRequest alloc]init];
-//        request1.routerType = DTRoterRequestType_POST;
-//        request1.URLString = @"dtrouter://invokeinstancemethod";
-//        request1.params    = @[@{@"key1":@"value1",@"key2":@"value2"},[block copy]];
-//        DTRouterResponse * resp1 = [[DTRouter sharedInstance]syncRequest:request1];
-//        NSLog(@"%@----error:%@",resp1.resultValue,resp1.error);
+//        NSLog(@"%@",resp.resultValue);
 //    });
     
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        DTRouterRequest * route = [[DTRouterRequest alloc]
+                                   initRequestWithURLString:@"ahhh://hostValue/path1value/path2value?argument=argumentvalue&aaa=" withArguments:@{@"haha":@"hahavalue"} error:nil];
+        
+        DTRouterResponse * resp = [[DTRouterService sharedInstance]request:route];
+        NSLog(@"%@",resp.resultValue);
+    });
     
     
-//    DTRouterRequest * request1 = [[DTRouterRequest alloc]init];
-//    request1.routerType = DTRoterRequestType_POST;
-//    request1.URLString = @"dtrouter://initViewController";
-//    request1.params    = @[@{@"key1":@"value1",@"key2":@"value2"}];
-//    DTRouterResponse * resp1 = [[DTRouter sharedInstance]syncRequest:request1];
-//    NSLog(@"%@----error:%@",resp1.resultValue,resp1.error);
     
     
- 
     return YES;
 }
 

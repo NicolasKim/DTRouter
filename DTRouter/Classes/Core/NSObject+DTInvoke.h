@@ -14,5 +14,14 @@
 
 - (id)dt_performSelector:(SEL)selector withObjects:(NSArray *)objects error:(NSError **)error;
 
++ (id)dt_performSelector:(SEL)selector
+           withArguments:(NSDictionary<NSString *,id> *)arguments
+       andArgumentMapper:(NSDictionary<NSString *,NSNumber *> *)argumentMapper
+                   error:(NSError **)error;
+
+- (id)dt_performSelector:(SEL)selector
+           withArguments:(NSDictionary<NSString *,id> *)arguments
+       andArgumentMapper:(NSDictionary<NSString *,NSNumber *> *)argumentMapper
+                   error:(NSError **)error;
 
 @end

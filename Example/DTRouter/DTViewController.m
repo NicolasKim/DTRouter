@@ -7,8 +7,9 @@
 //
 
 #import "DTViewController.h"
-#import <DTRouter/UIViewController+DTRouter.h>
-#import <DTRouter/UINavigationController+DTRouter.h>
+#import <DTRouter/DTRouter.h>
+
+
 typedef void(^DTViewControllerTestBlock)();
 
 
@@ -20,13 +21,26 @@ typedef void(^DTViewControllerTestBlock)();
 
 @implementation DTViewController
 
++(void)load{
+    DTRouterRequest * req = [[DTRouterRequest alloc] initRegistWithURLPattern:@"example://firstviewcontroller" handler:^id(NSDictionary *paths, NSDictionary *arguments) {
+        DTViewController * viewcontroller = [[DTViewController alloc]init];
+        viewcontroller.viewTitle = arguments[@"title"];
+        return viewcontroller;
+    } error:nil];
+
+    [[DTRouterService sharedInstance]request:req];
+
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     _dictArr = @[@"present",@"push"];
-    [self.tableview registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-    self.tableview.delegate = self;
-    self.tableview.dataSource = self;
+//    [self.tableview registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+//    self.tableview.delegate = self;
+//    self.tableview.dataSource = self;
+
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -48,15 +62,12 @@ typedef void(^DTViewControllerTestBlock)();
     switch (indexPath.row) {
         case 0:
         {
-            SEL s = @selector(tableView:canEditRowAtIndexPath:);
-            [self dt_presentViewControllerURL:@"dtrouter://initTestViewController" initParams:@[@1,NSStringFromSelector(s),@"hahah",^(){NSLog(@"hahaha");},[self class]] animated:YES completion:^{
-                
-            }];
+            
         }
             break;
         case 1:
         {
-            [self.navigationController dt_pushViewControllerURL:@"dtrouter://initPushTestViewController" animated:YES];
+            
         }
             break;
         default:
@@ -64,7 +75,9 @@ typedef void(^DTViewControllerTestBlock)();
     }
 }
 
-
++(void)printHahaha{
+    
+}
 
 
 - (void)didReceiveMemoryWarning

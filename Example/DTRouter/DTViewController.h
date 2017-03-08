@@ -12,5 +12,7 @@
 @import UIKit;
 
 @interface DTViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITableView *tableview;
+
+@property (nonatomic,strong)NSString * viewTitle;
+
 @end

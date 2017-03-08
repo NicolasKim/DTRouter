@@ -7,7 +7,8 @@
 //
 
 #import "NSObject+DTInvoke.h"
-#import "DTURLAnalizer.h"
+//#import "DTURLAnalizer.h"
+//#import "DTRouterCenter.h"
 @implementation NSObject (DTInvoke)
 + (id)dt_performSelector:(SEL)selector withObjects:(NSArray *)objects error:(NSError **)error{
     NSMethodSignature * signature =[self methodSignatureForSelector:selector];
@@ -61,6 +62,83 @@
     }
     
 }
+
++ (id)dt_performSelector:(SEL)selector
+           withArguments:(NSDictionary<NSString *,id> *)arguments
+       andArgumentMapper:(NSDictionary<NSString *,NSNumber *> *)argumentMapper
+                   error:(NSError **)error{
+    NSMethodSignature * signature =[[self class] methodSignatureForSelector:selector];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+    if (arguments.count == signature.numberOfArguments-2) {
+        
+        
+        [argumentMapper enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSNumber * _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            const char *type = [signature getArgumentTypeAtIndex:[obj integerValue]-1];
+            
+            [self  convertArgument:arguments[key] argumentIndex:[obj integerValue]-1 type:type invoke:invocation];
+            
+        }];
+        
+        [invocation setSelector:selector];
+        [invocation setTarget:self];
+        [invocation retainArguments];
+        [invocation invoke];
+        if (signature.methodReturnLength > 0) {
+            __autoreleasing id    returnValue = nil;
+            [invocation getReturnValue:&returnValue];
+            return returnValue;
+        }
+        return nil;
+    }
+    else{
+        *error = [NSError errorWithDomain:NSStringFromSelector(selector) code:-1 userInfo:@{NSLocalizedFailureReasonErrorKey:@"Param count did not match"}];
+        return nil;
+    }
+
+}
+
+
+
+- (id)dt_performSelector:(SEL)selector
+           withArguments:(NSDictionary<NSString *,id> *)arguments
+       andArgumentMapper:(NSDictionary<NSString *,NSNumber *> *)argumentMapper
+                   error:(NSError **)error{
+
+    NSMethodSignature * signature =[[self class] instanceMethodSignatureForSelector:selector];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+    if (arguments.count == signature.numberOfArguments-2) {
+        
+        
+        [argumentMapper enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSNumber * _Nonnull obj, BOOL * _Nonnull stop) {
+           
+            const char *type = [signature getArgumentTypeAtIndex:[obj integerValue]-1];
+            
+            [[self class] convertArgument:arguments[key] argumentIndex:[obj integerValue]-1 type:type invoke:invocation];
+            
+        }];
+
+        [invocation setSelector:selector];
+        [invocation setTarget:self];
+        [invocation retainArguments];
+        [invocation invoke];
+        if (signature.methodReturnLength > 0) {
+            __autoreleasing id    returnValue = nil;
+            [invocation getReturnValue:&returnValue];
+            return returnValue;
+        }
+        return nil;
+    }
+    else{
+        *error = [NSError errorWithDomain:NSStringFromSelector(selector) code:-1 userInfo:@{NSLocalizedFailureReasonErrorKey:@"Param count did not match"}];
+        return nil;
+    }
+}
+
+
+
+
+
 
 +(void)convertArgument:(id)argument argumentIndex:(NSInteger)i type:(char *)type invoke:(NSInvocation *)invocation{
     if (strcmp(type, "@") == 0) {
@@ -144,6 +222,9 @@
         }
     }
 }
+
+
+
 
 
 

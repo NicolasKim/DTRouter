@@ -7,28 +7,39 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DTRouterResponse.h"
 
+typedef void(^DTResponseBlock)(DTRouterResponse * response);
 
-typedef NS_ENUM(NSUInteger, DTRoterRequestType) {
-    DTRoterRequestType_GET,
-    DTRoterRequestType_POST,
+typedef NS_ENUM(NSUInteger, DTRouterRequestType) {
+    DTRouterRequestType_Regist,//注册路由
+    DTRouterRequestType_Route, //使用路由
 };
 
+typedef  id(^DTRouterRegistHandler)(NSDictionary * paths , NSDictionary * arguments);
+
 @interface DTRouterRequest : NSObject
-/*!
- @property
- @abstract request type
- */
-@property (nonatomic,assign)DTRoterRequestType  routerType;
-/*!
- @property
- @abstract scheme://host/path   or scheme://host/path?param1=value1&param2=value2
- */
-@property (nonatomic,strong)NSString     * URLString;
-/*!
- @property
- @abstract params for post routerType 'DTRoterRequestType_POST'
- */
-@property (nonatomic,strong)NSArray      * params;
+
+@property (nonatomic,assign)DTRouterRequestType requestType;
+
+@property (nonatomic,strong)NSString * URLString;//use for route
+
+@property (nonatomic,strong)NSDictionary * arguments;
+
+@property (nonatomic,strong)NSString * URLPattern;//use for regist
+
+@property (nonatomic,copy)DTRouterRegistHandler  registHandler;//use for regist
+
+-(instancetype)initRequestWithURLString:(NSString *)URLString
+                      withArguments:(NSDictionary *)arguments
+                              error:(NSError *__autoreleasing *)error;
+
+-(instancetype)initRequestWithURLString:(NSString *)URLString
+                              error:(NSError *__autoreleasing *)error;
+
+-(instancetype)initRegistWithURLPattern:(NSString *)URLPattern
+                            handler:(DTRouterRegistHandler)handler
+                              error:(NSError *__autoreleasing *)error;
+
 
 @end

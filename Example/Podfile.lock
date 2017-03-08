@@ -1,12 +1,12 @@
 PODS:
-  - DTRouter (0.0.2):
-    - DTRouter/Core (= 0.0.2)
-    - DTRouter/Modular (= 0.0.2)
-    - DTRouter/UI (= 0.0.2)
-  - DTRouter/Core (0.0.2)
-  - DTRouter/Modular (0.0.2):
+  - DTRouter (0.0.3):
+    - DTRouter/Core (= 0.0.3)
+    - DTRouter/Modular (= 0.0.3)
+    - DTRouter/UI (= 0.0.3)
+  - DTRouter/Core (0.0.3)
+  - DTRouter/Modular (0.0.3):
     - DTRouter/Core
-  - DTRouter/UI (0.0.2):
+  - DTRouter/UI (0.0.3):
     - DTRouter/Core
 
 DEPENDENCIES:
@@ -17,7 +17,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  DTRouter: ae77115e69d60358ff734f4379dce0d63ce4c51c
+  DTRouter: 5ece2405e241c6d72fec02eb1e5435046b220750
 
 PODFILE CHECKSUM: 725648ebca48ed22919709106da32ffe1fa013ae
 

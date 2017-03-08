@@ -1,29 +1,27 @@
 //
-//  DTPushTestViewController.m
+//  DTTabberViewController.m
 //  DTRouter
 //
-//  Created by 金秋成 on 2017/2/24.
+//  Created by 金秋成 on 2017/3/8.
 //  Copyright © 2017年 jinqiucheng1006@live.cn. All rights reserved.
 //
 
-#import "DTPushTestViewController.h"
+#import "DTTabberViewController.h"
 #import <DTRouter/DTRouter.h>
-@interface DTPushTestViewController ()
+@interface DTTabberViewController ()
 
 @end
 
-@implementation DTPushTestViewController
-+(void)load{
-    NSError * error = nil;
-    DTRouterModel * initModel = [[DTRouterModel alloc]initCreateModelWithURL:@"dtrouter://initPushTestViewController" withClass:self method:@selector(init)];
-    [[DTRouter sharedInstance]registModel:initModel error:&error];
-    if (error) {
-        NSLog(@"%@",error);
-    }
-}
+@implementation DTTabberViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    
+    
+    DTRouterRequest * req = [[DTRouterRequest alloc]initRequestWithURLString:@"example://firstviewcontroller?title=hahaha" error:nil];
+    DTRouterResponse * resp = [[DTRouterService sharedInstance]request:req];
+    [self setViewControllers:@[resp.resultValue]];
+
 }
 
 - (void)didReceiveMemoryWarning {
