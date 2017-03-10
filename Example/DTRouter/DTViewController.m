@@ -35,12 +35,9 @@ typedef void(^DTViewControllerTestBlock)();
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     _dictArr = @[@"present",@"push"];
-//    [self.tableview registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-//    self.tableview.delegate = self;
-//    self.tableview.dataSource = self;
-
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.tableView];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -75,8 +72,15 @@ typedef void(^DTViewControllerTestBlock)();
     }
 }
 
-+(void)printHahaha{
-    
+
+
+-(UITableView *)tableView{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+    }
+    return _tableView;
 }
 
 

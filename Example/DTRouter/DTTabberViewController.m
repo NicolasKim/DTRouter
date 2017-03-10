@@ -8,6 +8,7 @@
 
 #import "DTTabberViewController.h"
 #import <DTRouter/DTRouter.h>
+#import <DTRouter/UITabBarController+DTRouter.h>
 @interface DTTabberViewController ()
 
 @end
@@ -16,12 +17,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    DTRouterRequest * req = [[DTRouterRequest alloc]initRequestWithURLString:@"example://firstviewcontroller?title=hahaha" error:nil];
-    DTRouterResponse * resp = [[DTRouterService sharedInstance]request:req];
-    [self setViewControllers:@[resp.resultValue]];
+    NSData *plainData = [@"example://firstviewcontroller?title=hahahah" dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *base64String = [plainData base64EncodedStringWithOptions:0];
+    NSString * URLString = [NSString stringWithFormat:@"example://firstnavigationviewcontroller?initviewcontroller=%@",base64String];
 
+
+    NSData *plainData1 = [@"example://secondviewcontroller?title=hahahah" dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *base64String1 = [plainData1 base64EncodedStringWithOptions:0];
+    NSString * URLString1 = [NSString stringWithFormat:@"example://secondnavigationviewcontroller?initviewcontroller=%@",base64String1];
+
+    [self dt_setViewControllersWithURLStrings:@[URLString,URLString1]];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

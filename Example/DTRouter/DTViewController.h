@@ -15,4 +15,6 @@
 
 @property (nonatomic,strong)NSString * viewTitle;
 
+@property (nonatomic,strong)UITableView * tableView;
+
 @end

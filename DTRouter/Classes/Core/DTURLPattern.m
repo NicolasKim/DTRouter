@@ -60,7 +60,7 @@
     return matchResult;
 }
 
--(NSMutableDictionary *)getPathValueMapWithURLString:(NSString *)URLString error:(DTError **)error{
+-(NSMutableDictionary *)getPathValueMapWithURLString:(NSString *)URLString error:(NSError **)error{
     NSMutableDictionary * map = [NSMutableDictionary new];
     NSArray * paths = [self getPathComponents:URLString];
     BOOL matchResult = YES;
@@ -84,7 +84,7 @@
     
     
     if (matchResult == NO) {
-        *error = [DTError errorWithCode:DTErrorCode_RouterURLDoesNotMatch andMessage:@"DTErrorCode_RouterURLDoesNotMatch"];
+        *error = [NSError errorWithCode:DTErrorCode_RouterURLDoesNotMatch andMessage:@"DTErrorCode_RouterURLDoesNotMatch"];
         return nil;
     }
     

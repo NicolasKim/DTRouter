@@ -21,7 +21,6 @@ Pod::Spec.new do |s|
   s.public_header_files = 'DTRouter/Classes/Core/DTRouter.h'
     s.default_subspec = 'Core','UI','Modular'
     s.subspec 'Core' do |cs|
-
         cs.source_files = 'DTRouter/Classes/Core/*'
     end
     s.subspec 'UI' do |cs|

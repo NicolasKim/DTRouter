@@ -8,11 +8,13 @@
 
 #import "DTRouterService.h"
 #import "DTURLPattern.h"
-#import "DTError.h"
+
 NSString * const defaultAppScheme = @"DTDefaultAppScheme";
 
+NSString * const privateAsyncRequestQueueName = @"kPrivateAsyncRequestQueueName";
 
 @interface DTRouterService ()
+@property (nonatomic,strong)NSOperationQueue * privateAsyncRequestQueue;
 /*!
  @property
  @abstract 路由映射集合
@@ -45,10 +47,10 @@ static DTRouterService * _sharedInstance;
     else if (request.requestType == DTRouterRequestType_Route){
         DTURLPattern * URLPattern = [self getPatternOfURL:request.URLString];
         if (!URLPattern) {
-            resp.error = [DTError errorWithCode:DTErrorCode_RouterDoesNotExist andMessage:@"DTErrorCode_RouterDoesNotExist"];
+            resp.error = [NSError errorWithCode:DTErrorCode_RouterDoesNotExist andMessage:@"DTErrorCode_RouterDoesNotExist"];
         }
         else{
-            DTError * error = nil;
+            NSError * error = nil;
             NSDictionary * pathMap = [URLPattern getPathValueMapWithURLString:request.URLString error:nil];
             if (error) {
                 resp.error = error;
@@ -62,16 +64,36 @@ static DTRouterService * _sharedInstance;
     return resp;
 }
 
--(void)request:(DTRouterRequest *)request response:(DTResponseBlock)respBlock{
+-(void)asyncRequest:(DTRouterRequest *)request response:(DTResponseBlock)respBlock{
+    __weak typeof(self)  weakSelf = self;
     
+    [self.privateAsyncRequestQueue addOperationWithBlock:^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf request:request];
+    }];
 }
+
+-(void)addRouter:(NSString *)URLPattern handler:(DTRouterRegistHandler)handler{
+    DTRouterRequest * req = [[DTRouterRequest alloc] initRegistWithURLPattern:URLPattern handler:handler error:nil];
+    [[DTRouterService sharedInstance]request:req];
+}
+
+
+-(DTRouterResponse *)route:(NSString *)URLString arguments:(NSDictionary *)arguments{
+    DTRouterRequest * req = [[DTRouterRequest alloc]initRequestWithURLString:URLString error:nil];
+    return [[DTRouterService sharedInstance]request:req];
+}
+
+-(void)asyncRoute:(NSString *)URLString arguments:(NSDictionary *)arguments handler:(DTResponseBlock)handler{
+    DTRouterRequest * req = [[DTRouterRequest alloc]initRequestWithURLString:URLString error:nil];
+    [[DTRouterService sharedInstance]asyncRequest:req response:handler];
+}
+
+
+
 
 -(BOOL)handleURL:(NSURL *)url{
     if ([url.scheme isEqualToString:self.appScheme]) {
-//        DTURLPattern * URLPattern = [self getPatternOfURL:url];
-//        if (!URLPattern) return NO;
-        
-        
         
         
         
@@ -108,6 +130,13 @@ static DTRouterService * _sharedInstance;
     return _routerMap;
 }
 
+-(NSOperationQueue *)privateAsyncRequestQueue{
+    if (!_privateAsyncRequestQueue) {
+        _privateAsyncRequestQueue = [[NSOperationQueue alloc] init];
+        _privateAsyncRequestQueue.name = privateAsyncRequestQueueName;
+    }
+    return _privateAsyncRequestQueue;
+}
 
 
 @end

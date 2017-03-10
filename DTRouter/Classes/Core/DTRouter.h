@@ -14,7 +14,5 @@
 #import "DTRouterResponse.h"
 #import "DTRouterService.h"
 #import "DTURLPattern.h"
-#import "NSObject+DTInvoke.h"
-#import "NSURL+DTRouter.h"
 
 #endif /* DTRouter_h */

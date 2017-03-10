@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DTError.h"
+#import "NSError+DTRouter.h"
 
 typedef NS_ENUM(NSUInteger, DTURLPathType) {
     DTURLPathType_Static,//不可变
@@ -43,7 +43,7 @@ typedef NS_ENUM(NSUInteger, DTURLPathSubType) {
 
 -(BOOL)isMatchWithURLString:(NSString *)URLString;
 
--(NSMutableDictionary *)getPathValueMapWithURLString:(NSString *)URLString error:(DTError **)error;
+-(NSMutableDictionary *)getPathValueMapWithURLString:(NSString *)URLString error:(NSError **)error;
 
 
 @end

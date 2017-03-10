@@ -24,6 +24,9 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		994895F71E7047DF002857F2 /* DTTabberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 994895F61E7047DF002857F2 /* DTTabberViewController.m */; };
+		994895FF1E70F2F6002857F2 /* DTNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 994895FE1E70F2F6002857F2 /* DTNavigationViewController.m */; };
+		994896021E7125BF002857F2 /* DTSecondNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 994896011E7125BF002857F2 /* DTSecondNavigationController.m */; };
+		994896051E7125F2002857F2 /* DTSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 994896041E7125F2002857F2 /* DTSecondViewController.m */; };
 		FA856FF32F8AD379D966A498 /* Pods_DTRouter_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9615EF02CD1D0B302BDC91F7 /* Pods_DTRouter_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +70,12 @@
 		9615EF02CD1D0B302BDC91F7 /* Pods_DTRouter_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DTRouter_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		994895F51E7047DF002857F2 /* DTTabberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTTabberViewController.h; sourceTree = "<group>"; };
 		994895F61E7047DF002857F2 /* DTTabberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTabberViewController.m; sourceTree = "<group>"; };
+		994895FD1E70F2F6002857F2 /* DTNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTNavigationViewController.h; sourceTree = "<group>"; };
+		994895FE1E70F2F6002857F2 /* DTNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTNavigationViewController.m; sourceTree = "<group>"; };
+		994896001E7125BF002857F2 /* DTSecondNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTSecondNavigationController.h; sourceTree = "<group>"; };
+		994896011E7125BF002857F2 /* DTSecondNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTSecondNavigationController.m; sourceTree = "<group>"; };
+		994896031E7125F2002857F2 /* DTSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTSecondViewController.h; sourceTree = "<group>"; };
+		994896041E7125F2002857F2 /* DTSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTSecondViewController.m; sourceTree = "<group>"; };
 		D920D6C3AD1417954A7FCDD1 /* DTRouter.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = DTRouter.podspec; path = ../DTRouter.podspec; sourceTree = "<group>"; };
 		DCE77D93BD4866DA0FFFBE41 /* Pods_DTRouter_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DTRouter_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E91FA95392CF407324B05D84 /* Pods-DTRouter_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DTRouter_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DTRouter_Tests/Pods-DTRouter_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -151,6 +160,12 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* DTViewController.h */,
 				6003F5A6195388D20070C39A /* DTViewController.m */,
+				994895FD1E70F2F6002857F2 /* DTNavigationViewController.h */,
+				994895FE1E70F2F6002857F2 /* DTNavigationViewController.m */,
+				994896001E7125BF002857F2 /* DTSecondNavigationController.h */,
+				994896011E7125BF002857F2 /* DTSecondNavigationController.m */,
+				994896031E7125F2002857F2 /* DTSecondViewController.h */,
+				994896041E7125F2002857F2 /* DTSecondViewController.m */,
 				994895F51E7047DF002857F2 /* DTTabberViewController.h */,
 				994895F61E7047DF002857F2 /* DTTabberViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
@@ -404,8 +419,11 @@
 			files = (
 				6003F59E195388D20070C39A /* DTAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* DTViewController.m in Sources */,
+				994895FF1E70F2F6002857F2 /* DTNavigationViewController.m in Sources */,
 				994895F71E7047DF002857F2 /* DTTabberViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				994896021E7125BF002857F2 /* DTSecondNavigationController.m in Sources */,
+				994896051E7125F2002857F2 /* DTSecondViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

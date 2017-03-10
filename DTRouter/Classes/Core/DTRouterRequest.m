@@ -20,23 +20,19 @@
     self = [super init];
     if (self) {
         
-        
         NSURL * url = [NSURL URLWithString:URLString];
         NSString * query = url.query;
         
         NSMutableDictionary * dict = [NSMutableDictionary new];
-        NSArray * keyValuePair = [query componentsSeparatedByString:@"&"];
-        [keyValuePair enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSArray * keyValue = [obj componentsSeparatedByString:@"="];
-            [dict setObject:keyValue[1] forKey:keyValue[0]];
+        NSURLComponents * components = [NSURLComponents componentsWithString:URLString];
+        [components.queryItems enumerateObjectsUsingBlock:^(NSURLQueryItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [dict setObject:obj.value forKey:obj.name];
         }];
-        
+
         [arguments enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             [dict setObject:obj forKey:key];
         }];
-        
-        
-        
+
         _URLString = URLString;
         _requestType = DTRouterRequestType_Route;
         _arguments = dict;
