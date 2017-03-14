@@ -27,15 +27,14 @@ typedef void(^DTViewControllerTestBlock)();
         viewcontroller.viewTitle = arguments[@"title"];
         return viewcontroller;
     } error:nil];
-
     [[DTRouterService sharedInstance]request:req];
-
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _dictArr = @[@"present",@"push"];
+    _dictArr = @[@"present",@"push",@"openurl"];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
 }
@@ -59,12 +58,17 @@ typedef void(^DTViewControllerTestBlock)();
     switch (indexPath.row) {
         case 0:
         {
-            
+            [self dt_presentViewControllerURLString:@"example://firstviewcontroller" animated:YES completion:nil];
         }
             break;
         case 1:
         {
-            
+            [self.navigationController dt_pushViewControllerURLString:@"example://firstviewcontroller" animated:YES];
+        }
+            break;
+        case 2:
+        {
+            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"dtrouterscheme://showsecondviewcontroller"]];
         }
             break;
         default:

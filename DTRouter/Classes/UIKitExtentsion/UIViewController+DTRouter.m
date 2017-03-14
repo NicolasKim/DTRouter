@@ -10,7 +10,7 @@
 #import "DTRouterService.h"
 @implementation UIViewController (DTRouter)
 -(void)dt_presentViewControllerURLString:(NSString *)URLString animated:(BOOL)flag completion:(void (^)(void))completion{
-    [self dt_presentViewControllerURLString:URLString animated:flag completion:completion];
+    [self dt_presentViewControllerURLString:URLString arguments:nil animated:flag completion:completion];
 }
 
 

@@ -21,6 +21,7 @@
         DTRouterRequest * req = [[DTRouterRequest alloc]initRequestWithURLString:decodedString error:nil];
         DTRouterResponse * resp = [[DTRouterService sharedInstance]request:req];
         DTSecondNavigationController * viewcontroller = [[DTSecondNavigationController alloc]initWithRootViewController:resp.resultValue];
+        viewcontroller.title = @"second";
         return viewcontroller;
     }];
 
@@ -29,7 +30,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

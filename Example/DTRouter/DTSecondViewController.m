@@ -8,6 +8,7 @@
 
 #import "DTSecondViewController.h"
 #import <DTRouter/DTRouter.h>
+#import <DTRouter/UIApplication+DTRouter.h>
 
 @interface DTSecondViewController ()
 
@@ -21,13 +22,21 @@
         return viewcontroller;
     } error:nil];
     [[DTRouterService sharedInstance]request:req];
+
     
+    DTRouterRequest * req1 = [[DTRouterRequest alloc] initRegistWithURLPattern:@"dtrouterscheme://showsecondviewcontroller" handler:^id(NSDictionary *paths, NSDictionary *arguments) {
+        DTSecondViewController * viewcontroller = [[DTSecondViewController alloc]init];
+        UINavigationController * nav = [UIApplication dt_topNavigationController];
+        [nav pushViewController:viewcontroller animated:YES];
+        return nil;
+    } error:nil];
+    [[DTRouterService sharedInstance]request:req1];
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor brownColor];
 }
 
 - (void)didReceiveMemoryWarning {

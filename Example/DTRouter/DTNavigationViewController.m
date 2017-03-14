@@ -23,6 +23,7 @@
         DTRouterRequest * req = [[DTRouterRequest alloc]initRequestWithURLString:decodedString error:nil];
         DTRouterResponse * resp = [[DTRouterService sharedInstance]request:req];
         DTNavigationViewController * viewcontroller = [[DTNavigationViewController alloc]initWithRootViewController:resp.resultValue];
+        viewcontroller.title = @"first";
         return viewcontroller;
     } error:nil];
     
@@ -32,7 +33,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 }
 
 - (void)didReceiveMemoryWarning {

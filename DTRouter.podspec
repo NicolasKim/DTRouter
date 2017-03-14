@@ -18,8 +18,8 @@ Pod::Spec.new do |s|
   s.author           = { 'DreamTracer' => 'jinqiucheng1006@live.cn' }
   s.source           = { :git => 'https://github.com/NicolasKim/DTRouter.git', :tag => s.version.to_s }
   s.ios.deployment_target = '8.0'
-  s.public_header_files = 'DTRouter/Classes/Core/DTRouter.h'
     s.default_subspec = 'Core','UI','Modular'
+    s.public_header_files = 'DTRouter/Classes/Core/DTRouter.h'
     s.subspec 'Core' do |cs|
         cs.source_files = 'DTRouter/Classes/Core/*'
     end

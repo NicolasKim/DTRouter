@@ -13,6 +13,7 @@ typedef NS_ENUM(NSUInteger, DTErrorCode) {
     DTErrorCode_RouterAlreadyExist = 10000,
     DTErrorCode_RouterDoesNotExist = 10001,
     DTErrorCode_RouterURLDoesNotMatch = 10002,
+    DTErrorCode_RouterURLEMPTY = 10003,
 };
 
 

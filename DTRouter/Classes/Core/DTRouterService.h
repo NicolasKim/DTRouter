@@ -11,7 +11,8 @@
 #import "DTRouterResponse.h"
 @interface DTRouterService : NSObject
 
-@property (nonatomic,strong)NSString * appScheme;
+
+@property (nonatomic,strong)NSString * defaultScheme;
 
 +(instancetype)sharedInstance;
 

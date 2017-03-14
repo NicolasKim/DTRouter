@@ -7,7 +7,7 @@
 //
 
 #import "DTRouterRequest.h"
-
+#import "DTRouterService.h"
 @interface DTRouterRequest()
 
 @end
@@ -19,21 +19,45 @@
                                   error:(NSError *__autoreleasing *)error{
     self = [super init];
     if (self) {
+
+        NSAssert(URLString && URLString.length > 0, @"the 'URLString' can not be nil or empty");
+
+        if (!URLString || URLString.length <= 0) {
+            if (error) {
+                *error = [NSError errorWithCode:DTErrorCode_RouterURLEMPTY andMessage:@"the 'URLString' can not be nil or empty"];
+            }
+            return nil;
+        }
         
-        NSURL * url = [NSURL URLWithString:URLString];
-        NSString * query = url.query;
         
+        //remove percent if need
+        NSString * percentRemovedURLString = [URLString stringByRemovingPercentEncoding];
+        //create argument map
         NSMutableDictionary * dict = [NSMutableDictionary new];
-        NSURLComponents * components = [NSURLComponents componentsWithString:URLString];
+        
+        NSRange range = [percentRemovedURLString rangeOfString:@"://"];
+        if (range.length <=0) {
+            percentRemovedURLString = [NSString stringWithFormat:@"%@://%@",[DTRouterService sharedInstance].defaultScheme,percentRemovedURLString];
+        }
+//        else{
+//            //exchange the scheme with service scheme
+//            NSString * oldScheme = [percentRemovedURLString substringToIndex:range.location+3];
+//            NSString * newScheme = [NSString stringWithFormat:@"%@://",[DTRouterService sharedInstance].appScheme];
+//            percentRemovedURLString = [percentRemovedURLString stringByReplacingOccurrencesOfString:oldScheme withString:newScheme];
+//        }
+        
+        //analize the url string
+        NSURLComponents * components = [NSURLComponents componentsWithString:percentRemovedURLString];
+       
+        //set arguments in url string to the argument map
         [components.queryItems enumerateObjectsUsingBlock:^(NSURLQueryItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [dict setObject:obj.value forKey:obj.name];
         }];
-
+        //merge aruments to the map
         [arguments enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             [dict setObject:obj forKey:key];
         }];
-
-        _URLString = URLString;
+        _URLString = percentRemovedURLString;
         _requestType = DTRouterRequestType_Route;
         _arguments = dict;
     }
@@ -51,7 +75,23 @@
 
     self = [super init];
     if (self) {
-        _URLPattern = URLPattern;
+        
+        NSAssert(URLPattern && URLPattern.length > 0, @"the 'URLString' can not be nil or empty");
+        
+        if (!URLPattern || URLPattern.length <= 0) {
+            if (error) {
+                *error = [NSError errorWithCode:DTErrorCode_RouterURLEMPTY andMessage:@"the 'URLString' can not be nil or empty"];
+            }
+            return nil;
+        } 
+        
+        NSString * percentRemovedURLPattern = [URLPattern stringByRemovingPercentEncoding];
+        NSRange range = [percentRemovedURLPattern rangeOfString:@"://"];
+        if (range.length <=0) {
+            percentRemovedURLPattern = [NSString stringWithFormat:@"%@://%@",[DTRouterService sharedInstance].defaultScheme,percentRemovedURLPattern];
+        }
+        
+        _URLPattern = percentRemovedURLPattern;
         _requestType = DTRouterRequestType_Regist;
         _registHandler = [handler copy];
     }

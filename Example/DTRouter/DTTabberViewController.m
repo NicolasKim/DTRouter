@@ -27,8 +27,6 @@
     NSString * URLString1 = [NSString stringWithFormat:@"example://secondnavigationviewcontroller?initviewcontroller=%@",base64String1];
 
     [self dt_setViewControllersWithURLStrings:@[URLString,URLString1]];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -19,5 +19,4 @@
                    withRootViewControllerURLString:(NSString *)rootURLString
                                     rootArguments:(NSDictionary *)rootArguments;
 
-
 @end

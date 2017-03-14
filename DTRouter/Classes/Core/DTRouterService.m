@@ -93,12 +93,9 @@ static DTRouterService * _sharedInstance;
 
 
 -(BOOL)handleURL:(NSURL *)url{
-    if ([url.scheme isEqualToString:self.appScheme]) {
-        
-        
-        
-        
-        
+    DTURLPattern * pattern = [self getPatternOfURL:url.absoluteString];
+    if (pattern) {
+        [self route:url.absoluteString arguments:nil];
         return YES;
     }
     return NO;
@@ -116,11 +113,24 @@ static DTRouterService * _sharedInstance;
     return pattern;
 }
 
--(NSString *)appScheme{
-    if (!_appScheme) {
-        _appScheme = defaultAppScheme;
+-(NSString *)defaultScheme{
+    if (!_defaultScheme) {
+        
+        
+        NSArray *urltypes = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleURLTypes"];
+        NSString * URLSchemeInPlist = [[urltypes.firstObject objectForKey:@"CFBundleURLSchemes"] firstObject];
+        //        CFBundleURLTypes
+        //        CFBundleURLName
+        //        CFBundleURLSchemes
+        if (URLSchemeInPlist) {
+            _defaultScheme = URLSchemeInPlist;
+        }
+        else{
+            _defaultScheme = defaultAppScheme;
+        }
+        NSLog(@"%@",_defaultScheme);
     }
-    return _appScheme;
+    return _defaultScheme;
 }
 
 -(NSMutableDictionary<DTURLPattern *,DTRouterRegistHandler> *)routerMap{
