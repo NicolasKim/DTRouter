@@ -24,8 +24,9 @@
     [[DTRouterService sharedInstance]request:req];
 
     
-    DTRouterRequest * req1 = [[DTRouterRequest alloc] initRegistWithURLPattern:@"dtrouterscheme://showsecondviewcontroller" handler:^id(NSDictionary *paths, NSDictionary *arguments) {
+    DTRouterRequest * req1 = [[DTRouterRequest alloc] initRegistWithURLPattern:@"showsecondviewcontroller/:desc" handler:^id(NSDictionary *paths, NSDictionary *arguments) {
         DTSecondViewController * viewcontroller = [[DTSecondViewController alloc]init];
+        viewcontroller.descStr = paths[@"desc"];
         UINavigationController * nav = [UIApplication dt_topNavigationController];
         [nav pushViewController:viewcontroller animated:YES];
         return nil;
@@ -37,6 +38,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor brownColor];
+
+    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.width-64)];
+    label.text = self.descStr;
+    label.textColor = [UIColor blackColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:label];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

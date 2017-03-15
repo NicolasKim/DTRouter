@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface DTSecondViewController : UIViewController
-
+@property (nonatomic,strong)NSString * descStr;
 @end

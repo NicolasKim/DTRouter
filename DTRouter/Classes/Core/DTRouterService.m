@@ -64,13 +64,14 @@ static DTRouterService * _sharedInstance;
     return resp;
 }
 
--(void)asyncRequest:(DTRouterRequest *)request response:(DTResponseBlock)respBlock{
+-(NSOperation *)asyncRequest:(DTRouterRequest *)request response:(DTResponseBlock)respBlock{
     __weak typeof(self)  weakSelf = self;
-    
-    [self.privateAsyncRequestQueue addOperationWithBlock:^{
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        [strongSelf request:request];
-    }];
+    NSOperation * operation = [NSBlockOperation blockOperationWithBlock:^{
+                                    __strong typeof(weakSelf) strongSelf = weakSelf;
+                                    [strongSelf request:request];
+                                }];
+    [self.privateAsyncRequestQueue addOperation:operation];
+    return operation;
 }
 
 -(void)addRouter:(NSString *)URLPattern handler:(DTRouterRegistHandler)handler{
@@ -84,12 +85,10 @@ static DTRouterService * _sharedInstance;
     return [[DTRouterService sharedInstance]request:req];
 }
 
--(void)asyncRoute:(NSString *)URLString arguments:(NSDictionary *)arguments handler:(DTResponseBlock)handler{
-    DTRouterRequest * req = [[DTRouterRequest alloc]initRequestWithURLString:URLString error:nil];
-    [[DTRouterService sharedInstance]asyncRequest:req response:handler];
+-(NSOperation *)asyncRoute:(NSString *)URLString arguments:(NSDictionary *)arguments handler:(DTResponseBlock)handler{
+    DTRouterRequest * req = [[DTRouterRequest alloc]initRequestWithURLString:URLString withArguments:arguments error:nil];
+    return [[DTRouterService sharedInstance]asyncRequest:req response:handler];
 }
-
-
 
 
 -(BOOL)handleURL:(NSURL *)url{
@@ -115,8 +114,7 @@ static DTRouterService * _sharedInstance;
 
 -(NSString *)defaultScheme{
     if (!_defaultScheme) {
-        
-        
+
         NSArray *urltypes = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleURLTypes"];
         NSString * URLSchemeInPlist = [[urltypes.firstObject objectForKey:@"CFBundleURLSchemes"] firstObject];
         //        CFBundleURLTypes
@@ -147,6 +145,5 @@ static DTRouterService * _sharedInstance;
     }
     return _privateAsyncRequestQueue;
 }
-
 
 @end

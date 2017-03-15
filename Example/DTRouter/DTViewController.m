@@ -8,7 +8,9 @@
 
 #import "DTViewController.h"
 #import <DTRouter/DTRouter.h>
+#import "DTLongtimeTask.h"
 
+typedef void(^handler)(long long currentNum);
 
 typedef void(^DTViewControllerTestBlock)();
 
@@ -34,7 +36,7 @@ typedef void(^DTViewControllerTestBlock)();
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _dictArr = @[@"present",@"push",@"openurl"];
+    _dictArr = @[@"present",@"push",@"openurl",@"longtimetask"];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
 }
@@ -68,7 +70,28 @@ typedef void(^DTViewControllerTestBlock)();
             break;
         case 2:
         {
-            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"dtrouterscheme://showsecondviewcontroller"]];
+            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"dtrouter://showsecondviewcontroller/openinapp"]];
+        }
+            break;
+        case 3:
+        {
+            
+            handler  h = ^(long long num){
+                NSLog(@"current num : %lld",num);
+            };
+            [[DTRouterService sharedInstance]asyncRoute:@"addnumber/100" arguments:@{@"taskkey":h} handler:^(DTRouterResponse *response) {
+                NSLog(@"result : %@",response.resultValue);
+            }];
+            
+            
+//            __autoreleasing DTLongtimeTask * task = [[DTLongtimeTask alloc]init];
+//            
+//            [task addNumto:1000000 handler:^(long long currentNum) {
+//                NSLog(@"current num : %lld",currentNum);
+//            }];
+            
+            
+            
         }
             break;
         default:

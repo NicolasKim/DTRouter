@@ -28,9 +28,6 @@ typedef void(^DTViewControllerTestBlock)();
 //    else{
 //        NSLog(@"did not match !!!");
 //    }
-    
-    
-    
 //    DTRouterRequest * req = [[DTRouterRequest alloc]initRegistWithURLPattern:@"ahhh://:host/:path1/:path2" handler:^NSDictionary *(NSDictionary * paths , NSDictionary * arguments) {
 //        
 //        NSLog(@"req callback");

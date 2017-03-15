@@ -18,7 +18,7 @@
 
 -(DTRouterResponse *)request:(DTRouterRequest *)request;
 
--(void)asyncRequest:(DTRouterRequest *)request response:(DTResponseBlock)respBlock;
+-(NSOperation *)asyncRequest:(DTRouterRequest *)request response:(DTResponseBlock)respBlock;
 
 
 -(void)addRouter:(NSString *)URLPattern handler:(DTRouterRegistHandler)handler;
@@ -26,7 +26,7 @@
 
 -(DTRouterResponse *)route:(NSString *)URLString arguments:(NSDictionary *)arguments;
 
--(void)asyncRoute:(NSString *)URLString arguments:(NSDictionary *)arguments handler:(DTResponseBlock)handler;
+-(NSOperation *)asyncRoute:(NSString *)URLString arguments:(NSDictionary *)arguments handler:(DTResponseBlock)handler;
 
 -(BOOL)handleURL:(NSURL *)url;
 
