@@ -7,7 +7,7 @@
 //
 
 #import "DTTabberViewController.h"
-#import <DTRouter/DTRouter.h>
+
 #import <DTRouter/UITabBarController+DTRouter.h>
 @interface DTTabberViewController ()
 

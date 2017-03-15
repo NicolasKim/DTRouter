@@ -18,6 +18,8 @@ it, simply add the following line to your Podfile:
 
 ```ruby
 pod "DTRouter"
+or  'DTRouter/Core'
+or  'DTRouter/UI'
 ```
 
 
@@ -26,17 +28,31 @@ pod "DTRouter"
 
 ```objective-c
 //regist 
-DTRouterRequest * req = [[DTRouterRequest alloc]initRegistWithURLPattern:@"example://firstviewcontroller" handler:^id(NSDictionary *paths, NSDictionary *arguments) {
-        DTViewController * viewcontroller = [[DTViewController alloc]init];
-        viewcontroller.viewTitle = arguments[@"title"];
-        return viewcontroller;
-    } error:nil];
-[[DTRouterService sharedInstance]request:req];
+-(void)addRouter:(NSString *)URLPattern handler:(DTRouterRegistHandler)handler;
 
 //route
-DTRouterRequest * req = [[DTRouterRequest alloc]initRequestWithURLString:@"example://firstviewcontroller?title=hahaha" error:nil];
-    DTRouterResponse * resp = [[DTRouterService sharedInstance]request:req];
-    [self setViewControllers:@[resp.resultValue]];
+-(DTRouterResponse *)route:(NSString *)URLString arguments:(NSDictionary *)arguments;
+
+-(NSOperation *)asyncRoute:(NSString *)URLString arguments:(NSDictionary *)arguments handler:(DTResponseBlock)handler;
+
+```
+
+```objective-c
+//regist
+[[DTRouterService sharedInstance]addRouter:@"addnumber/:num" handler:^id(NSDictionary *paths, NSDictionary *arguments) {
+		NSString * num = paths[@"num"];
+		handler    handle = arguments[@"taskkey"];
+        return nil;
+}];
+
+//route
+handler  h = ^(long long num){
+                NSLog(@"current num : %lld",num);
+             };
+[[DTRouterService sharedInstance]asyncRoute:@"addnumber/100" arguments:@{@"taskkey":h} handler:^(DTRouterResponse *response) {
+	NSLog(@"result : %@",response.resultValue);
+}];
+
 ```
 
 
