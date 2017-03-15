@@ -7,7 +7,7 @@
 //
 
 #import "DTViewController.h"
-#import <DTRouter/DTRouter.h>
+#import <DTRouter/DTRouter-umbrella.h>
 #import "DTLongtimeTask.h"
 
 typedef void(^handler)(long long currentNum);

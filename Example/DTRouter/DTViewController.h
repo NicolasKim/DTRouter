@@ -6,7 +6,7 @@
 //  Copyright (c) 2017 jinqiucheng1006@live.cn. All rights reserved.
 //
 
-#import <DTRouter/DTRouter.h>
+#import <DTRouter/DTRouter-umbrella.h>
 
 
 @import UIKit;

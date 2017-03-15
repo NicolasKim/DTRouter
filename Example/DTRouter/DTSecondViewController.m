@@ -7,8 +7,7 @@
 //
 
 #import "DTSecondViewController.h"
-#import <DTRouter/DTRouter.h>
-#import <DTRouter/UIApplication+DTRouter.h>
+#import <DTRouter/DTRouter-umbrella.h>
 
 @interface DTSecondViewController ()
 

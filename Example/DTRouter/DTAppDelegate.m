@@ -7,7 +7,7 @@
 //
 
 #import "DTAppDelegate.h"
-#import <DTRouter/DTRouter.h>
+#import <DTRouter/DTRouter-umbrella.h>
 
 #import "DTViewController.h"
 

@@ -7,7 +7,7 @@
 //
 
 #import "DTSecondNavigationController.h"
-#import <DTRouter/DTRouter.h>
+#import <DTRouter/DTRouter-umbrella.h>
 @interface DTSecondNavigationController ()
 
 @end
