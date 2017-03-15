@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'DTRouter'
-  s.version          = '0.0.3'
+  s.version          = '1.0.0'
   s.summary          = 'Lightweight modular framework'
   s.description      = <<-DESC
                         Lightweight modular framework
