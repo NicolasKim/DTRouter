@@ -1,10 +1,17 @@
 PODS:
-  - DTRouter (1.0.0):
-    - DTRouter/Core (= 1.0.0)
-    - DTRouter/UI (= 1.0.0)
-  - DTRouter/Core (1.0.0)
-  - DTRouter/UI (1.0.0):
+  - DTRouter (1.0.1):
+    - DTRouter/Core (= 1.0.1)
+    - DTRouter/SDWebimageEx (= 1.0.1)
+    - DTRouter/UI (= 1.0.1)
+  - DTRouter/Core (1.0.1)
+  - DTRouter/SDWebimageEx (1.0.1):
     - DTRouter/Core
+    - SDWebImage (~> 4.0.0)
+  - DTRouter/UI (1.0.1):
+    - DTRouter/Core
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
 
 DEPENDENCIES:
   - DTRouter (from `../`)
@@ -14,7 +21,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  DTRouter: c31b07b134442a93ab314816aa225b253d65e7b4
+  DTRouter: 3e82b45686c261598fd97579a8cf8f7d08b15abe
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
 
 PODFILE CHECKSUM: 725648ebca48ed22919709106da32ffe1fa013ae
 

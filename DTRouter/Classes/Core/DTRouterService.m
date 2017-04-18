@@ -51,7 +51,7 @@ static DTRouterService * _sharedInstance;
         }
         else{
             NSError * error = nil;
-            NSDictionary * pathMap = [URLPattern getPathValueMapWithURLString:request.URLString error:nil];
+            NSMutableDictionary * pathMap = [URLPattern getPathValueMapWithURLString:request.URLString error:nil];
             if (error) {
                 resp.error = error;
             }
@@ -81,7 +81,7 @@ static DTRouterService * _sharedInstance;
 
 
 -(DTRouterResponse *)route:(NSString *)URLString arguments:(NSDictionary *)arguments{
-    DTRouterRequest * req = [[DTRouterRequest alloc]initRequestWithURLString:URLString error:nil];
+    DTRouterRequest * req = [[DTRouterRequest alloc]initRequestWithURLString:URLString withArguments:arguments error:nil];
     return [[DTRouterService sharedInstance]request:req];
 }
 

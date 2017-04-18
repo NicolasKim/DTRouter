@@ -24,7 +24,7 @@ typedef void(^DTViewControllerTestBlock)();
 @implementation DTViewController
 
 +(void)load{
-    DTRouterRequest * req = [[DTRouterRequest alloc] initRegistWithURLPattern:@"example://firstviewcontroller" handler:^id(NSDictionary *paths, NSDictionary *arguments) {
+    DTRouterRequest * req = [[DTRouterRequest alloc] initRegistWithURLPattern:@"example://firstviewcontroller/:idi" handler:^id(NSDictionary *paths, NSDictionary *arguments) {
         DTViewController * viewcontroller = [[DTViewController alloc]init];
         viewcontroller.viewTitle = arguments[@"title"];
         return viewcontroller;

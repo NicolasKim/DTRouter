@@ -7,7 +7,7 @@
 //
 
 #import "DTNavigationViewController.h"
-#import <DTRouter/DTRouter.h>
+#import <DTRouter/DTRouter-umbrella.h>
 @interface DTNavigationViewController ()
 
 @end

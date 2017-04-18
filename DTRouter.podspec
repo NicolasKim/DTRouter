@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'DTRouter'
-  s.version          = '1.0.1'
+  s.version          = '1.0.2'
   s.summary          = 'Lightweight modular framework'
   s.description      = <<-DESC
                         Lightweight modular framework
@@ -18,8 +18,8 @@ Pod::Spec.new do |s|
   s.author           = { 'DreamTracer' => 'jinqiucheng1006@live.cn' }
   s.source           = { :git => 'https://github.com/NicolasKim/DTRouter.git', :tag => s.version.to_s }
   s.ios.deployment_target = '8.0'
-  s.default_subspec = 'Core','UI'
-
+  s.default_subspec = 'Core','UI','SDWebimageEx'
+  
   s.subspec 'Core' do |cs|
     cs.source_files = 'DTRouter/Classes/Core/*'
     cs.public_header_files = 'DTRouter/Classes/Core/*.h'
@@ -30,4 +30,11 @@ Pod::Spec.new do |s|
     cs.source_files = 'DTRouter/Classes/UIKitExtentsion/*'
     cs.dependency 'DTRouter/Core'
   end
+
+    s.subspec 'SDWebimageEx' do |cs|
+        cs.public_header_files = 'DTRouter/Classes/SDWebimageEx/*.h'
+        cs.source_files = 'DTRouter/Classes/SDWebimageEx/*'
+        cs.dependency 'DTRouter/Core'
+        cs.dependency 'SDWebImage', '~> 4.0.0'
+    end
 end

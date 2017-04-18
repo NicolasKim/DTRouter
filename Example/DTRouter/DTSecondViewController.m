@@ -9,6 +9,18 @@
 #import "DTSecondViewController.h"
 #import <DTRouter/DTRouter-umbrella.h>
 
+
+@interface DTImageView : UIImageView
+
+@end
+@implementation DTImageView
+
+-(void)dealloc{
+    NSLog(@"DTImageView 释放");
+}
+
+@end
+
 @interface DTSecondViewController ()
 
 @end
@@ -43,6 +55,15 @@
     label.textColor = [UIColor blackColor];
     label.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:label];
+    
+    
+    
+#pragma sdwebimage 扩展
+    DTImageView * imageView = [[DTImageView alloc]initWithFrame:CGRectMake(30, 100, 100, 100)];
+    imageView.backgroundColor = [UIColor blackColor];
+    [self.view addSubview:imageView];
+    
+    [imageView loadURLString:@"https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_ca79a146.png"];
     
     
 }
